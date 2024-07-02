@@ -54,29 +54,35 @@ class Tree
     @size += 1
   end
 
-  def delete(value)
-    # return @root if @root.nil?
-    # current_node = @root
-    # previous_node = @root
-    # until current_node.data == value
-
+  def delete(value, current_node = self.root)
+    help_delete(value, current_node = self.root)
+    @size -= 1
+    current_node
   end
 
-  def help_delete(value, node = self.root)
-    if node == nil
+  def help_delete(value, current_node = self.root)
+    if current_node == nil
       return nil
     end
-    if value < node.data
-      node.left_node = help_delete(value, node.left_node)
-    elsif value > node.data
-      node.right_node = help_delete(value, node.right_node)
+    if value < current_node.data
+      current_node.left_node = help_delete(value, current_node.left_node)
+    elsif value > current_node.data
+      current_node.right_node = help_delete(value, current_node.right_node)
     else
       # This triggers where value == node.data
-      if node.left_node != nil && node.right_node != nil
-        temp_node = node
-        # min_riht = 
+      if current_node.left_node != nil && current_node.right_node != nil
+        min_right = find_min(current_node.right_node)
+        current_node.data = min_right.data
+        current_node.right_node = help_delete(min_right.data, current_node.right_node)
+      elsif current_node.left_node != nil
+        current_node = current_node.left_node
+      elsif current_node.right_node != nil
+        current_node = current_node.right_node
+      else
+        current_node = nil
       end
     end
+    return current_node
   end
 
   def find_max(current_node = self.root)
@@ -95,6 +101,40 @@ class Tree
       return current_node
     end
     return find_min(current_node.left_node)
+  end
+
+
+
+  def find
+    #accepts a value and returns the node with the given value
+  end
+
+  def level_order
+  end
+
+  def inorder
+  end
+
+  def preorder
+  end
+
+  def postorder
+  end
+
+  def height
+    # accepts a node and returns its height, which is defined as the number of edges in longest path from a given node to a leaf node
+  end
+
+  def depth
+    # accepts a node and returns its depth, which is defined as the number of edges in path from a given node to the tree’s root node
+  end
+
+  def balanced?
+    # checks if the tree is balanced - ie, difference between heights of left subtree and right subtree of every node is not more than 1
+  end
+
+  def rebalance
+    # rebalances an unbalanced tree
   end
 
 
