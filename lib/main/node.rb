@@ -1,5 +1,5 @@
 class Node
-  def initialize (value)
+  def initialize(value)
     @data = value
     @left_node = nil
     @right_node = nil
