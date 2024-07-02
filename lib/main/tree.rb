@@ -13,7 +13,6 @@ class Tree
     array.each do |element|
       insert(element)
     end
-
   end
 
   def tree_sort(array)
@@ -50,8 +49,53 @@ class Tree
       else
         previous_node.right_node = Node.new(value)
       end
+      # Condsider recursive?
     end
     @size += 1
   end
+
+  def delete(value)
+    # return @root if @root.nil?
+    # current_node = @root
+    # previous_node = @root
+    # until current_node.data == value
+
+  end
+
+  def help_delete(value, node = self.root)
+    if node == nil
+      return nil
+    end
+    if value < node.data
+      node.left_node = help_delete(value, node.left_node)
+    elsif value > node.data
+      node.right_node = help_delete(value, node.right_node)
+    else
+      # This triggers where value == node.data
+      if node.left_node != nil && node.right_node != nil
+        temp_node = node
+        # min_riht = 
+      end
+    end
+  end
+
+  def find_max(current_node = self.root)
+    if current_node.nil?
+      return nil
+    elsif current_node.right_node.nil?
+      return current_node
+    end
+    return find_max(current_node.right_node)
+  end
+
+  def find_min(current_node = self.root)
+    if current_node.nil?
+      return nil
+    elsif current_node.left_node.nil?
+      return current_node
+    end
+    return find_min(current_node.left_node)
+  end
+
 
 end

@@ -9,4 +9,6 @@ tree = Tree.new
 
 p tree.build_tree(an_array)
 
-p tree
+p tree.find_max
+
+p tree.find_min
