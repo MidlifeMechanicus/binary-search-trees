@@ -10,6 +10,9 @@ class Tree
   def build_tree(array)
     # takes an array of data (e.g., [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]) and turns it into a balanced binary tree full of Node objects appropriately placed (don’t forget to sort and remove duplicates!). The #build_tree method should return the level-0 root node.
     array = tree_sort(array.sort.uniq)
+    array.each do |element|
+      insert(element)
+    end
 
   end
 

@@ -9,8 +9,4 @@ tree = Tree.new
 
 p tree.build_tree(an_array)
 
-tree.insert(5)
-tree.insert(3)
-tree.insert(9)
-
 p tree
