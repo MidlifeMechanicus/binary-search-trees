@@ -120,7 +120,26 @@ class Tree
     end
   end
 
-  def level_order
+  def level_order()
+    # traverse the tree in breadth-first level order and yield each node to the provided block or  return an array of values if no block is given
+
+    # Insert block argument after function working
+
+    return if @root.nil?
+
+    discovered = []
+    discovered << @root
+
+    while discovered.length > 0
+      puts discovered[0].data
+      unless discovered[0].left_node.nil?
+        discovered << discovered[0].left_node
+      end
+      unless discovered[0].right_node.nil?
+        discovered << discovered[0].right_node
+      end
+      discovered.shift
+    end
   end
 
   def inorder

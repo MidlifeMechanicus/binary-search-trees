@@ -9,5 +9,8 @@ tree = Tree.new
 
 p tree.build_tree(an_array)
 
-p tree.find(4)
-p tree.find(10)
+def show_stuff (thing)
+  puts thing
+end
+
+tree.level_order
