@@ -9,10 +9,6 @@ tree = Tree.new
 
 p tree.build_tree(an_array)
 
-def show_stuff (thing)
-  puts thing
-end
+tree.postorder { |data| puts data}
 
-tree.inorder { |data| puts data}
-
-p tree.inorder
+p tree.postorder

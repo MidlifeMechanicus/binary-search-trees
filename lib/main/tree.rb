@@ -146,7 +146,16 @@ class Tree
     output
   end
 
-  def inorder
+  def inorder(current_node = self.root, &block)
+    # traverse tree depth first in left-root-right order
+    return [] if current_node.nil?
+    left = inorder(current_node.left_node, &block)
+    yield( current_node.data) if block_given?
+    right = inorder(current_node.right_node, &block)
+    return left + [current_node.data] + right unless block_given?
+  end
+
+  def preorder
     # traverse tree depth first in root-left-right order
     return if @root.nil?
 
@@ -172,12 +181,13 @@ class Tree
     output
   end
 
-  def preorder
-    # traverse tree depth first in left-root-right order
-  end
-
-  def postorder
+  def postorder(current_node = self.root, &block)
     # traverse tree depth first in left-right-root order
+    return [] if current_node.nil?
+    left = inorder(current_node.left_node, &block)
+    right = inorder(current_node.right_node, &block)
+    yield( current_node.data) if block_given?
+    return left + right + [current_node.data] unless block_given?
   end
 
   def height
