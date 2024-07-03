@@ -103,8 +103,6 @@ class Tree
     return find_min(current_node.left_node)
   end
 
-
-
   def find(value, current_node = self.root)
     #accepts a value and returns the node with the given value
     if current_node.nil?
@@ -149,12 +147,37 @@ class Tree
   end
 
   def inorder
+    # traverse tree depth first in root-left-right order
+    return if @root.nil?
+
+    discovered = []
+    discovered << @root
+    output = [] unless block_given?
+
+    while discovered.length > 0
+      current_node = discovered[-1]
+      discovered.pop
+      if block_given?
+        yield(current_node.data)
+      else
+        output << current_node.data
+      end
+      unless current_node.right_node.nil?
+        discovered << current_node.right_node
+      end
+      unless current_node.left_node.nil?
+        discovered << current_node.left_node
+      end
+    end
+    output
   end
 
   def preorder
+    # traverse tree depth first in left-root-right order
   end
 
   def postorder
+    # traverse tree depth first in left-right-root order
   end
 
   def height

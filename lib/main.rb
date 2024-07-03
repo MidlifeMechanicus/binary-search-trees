@@ -13,6 +13,6 @@ def show_stuff (thing)
   puts thing
 end
 
-tree.level_order { |data| puts data}
+tree.inorder { |data| puts data}
 
-p tree.level_order
+p tree.inorder
