@@ -9,8 +9,5 @@ tree = Tree.new
 
 p tree.build_tree(an_array)
 
-p tree.find_min
-
-tree.delete(1)
-
-p tree.find_min
+p tree.find(4)
+p tree.find(10)

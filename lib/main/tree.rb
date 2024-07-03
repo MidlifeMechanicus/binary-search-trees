@@ -105,8 +105,19 @@ class Tree
 
 
 
-  def find
+  def find(value, current_node = self.root)
     #accepts a value and returns the node with the given value
+    if current_node.nil?
+      return nil
+    elsif value == current_node.data
+      return current_node
+    elsif value > current_node.data
+      find(value, current_node.right_node)
+    elsif value < current_node.data
+      find(value, current_node.left_node)
+    else
+      return nil
+    end
   end
 
   def level_order
