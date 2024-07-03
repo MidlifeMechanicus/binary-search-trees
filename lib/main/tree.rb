@@ -190,12 +190,35 @@ class Tree
     return left + right + [current_node.data] unless block_given?
   end
 
-  def height
+  def height(current_node = self.root)
     # accepts a node and returns its height, which is defined as the number of edges in longest path from a given node to a leaf node
+    return - 1 if current_node.nil?
+    # This is NOT what the examples say 9ie, return 0)
+    # However, I am finding that this counts NODES rather than EDGES and so overcounts by 1.
+    # By returning -1 we cancel out the +1 in the final recursion, thus ACTUALLY returning 0.
+    height_left = height(current_node.left_node)
+    height_right = height(current_node.right_node)
+    return [height_left, height_right].max + 1
   end
 
-  def depth
+  def depth(value)
     # accepts a node and returns its depth, which is defined as the number of edges in path from a given node to the tree’s root node
+    # I have interpreted the above as meaning a node VALUE rather than a node NAME
+    total_depth = depth_finder()
+    p total_depth
+    target_node = find(value)
+    target_node_depth = depth_finder(target_node)
+    p target_node_depth
+    total_depth - target_node_depth
+  end
+
+  def depth_finder(current_node = self.root)
+    return 0 if current_node.nil?
+
+    depth_left = depth_finder(current_node.left_node)
+    depth_right = depth_finder(current_node.right_node)
+    
+    depth_left > depth_right ? depth_left + 1: depth_right + 1
   end
 
   def balanced?

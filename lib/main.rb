@@ -9,6 +9,13 @@ tree = Tree.new
 
 p tree.build_tree(an_array)
 
-tree.postorder { |data| puts data}
+p tree.level_order
 
-p tree.postorder
+p tree.height
+node8 = tree.find(8)
+
+p tree.height(node8)
+
+# tree.postorder { |data| puts data}
+# 
+# p tree.postorder
