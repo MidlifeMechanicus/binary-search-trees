@@ -7,14 +7,22 @@ an_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 tree = Tree.new
 
+p tree.depth
+
 p tree.build_tree(an_array)
 
-p tree.level_order
+node5 = tree.find(5)
 
-p tree.height
+p tree.depth(node5)
+
+# p tree.level_order
+
+# p tree.height
 node8 = tree.find(8)
 
-p tree.height(node8)
+# p tree.height(node8)
+
+p tree.depth(node8)
 
 # tree.postorder { |data| puts data}
 # 
