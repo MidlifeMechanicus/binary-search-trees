@@ -129,9 +129,14 @@ class Tree
 
     discovered = []
     discovered << @root
+    output = [] unless block_given?
 
     while discovered.length > 0
-      puts discovered[0].data
+      if block_given?
+        yield(discovered[0].data)
+      else
+        output << discovered[0].data
+      end
       unless discovered[0].left_node.nil?
         discovered << discovered[0].left_node
       end
@@ -140,6 +145,7 @@ class Tree
       end
       discovered.shift
     end
+    output
   end
 
   def inorder
