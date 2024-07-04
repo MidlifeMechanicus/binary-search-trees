@@ -1,5 +1,6 @@
 require_relative "tree/order_tree"
 
+# Class for creating binary search trees.
 class Tree
   attr_accessor :root
 
