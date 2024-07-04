@@ -1,10 +1,13 @@
+require_relative "tree/order_tree"
+
 class Tree
+  attr_accessor :root
+
   def initialize
     @root = nil
-    @size = 0
   end
 
-  attr_accessor :root
+  include OrderTree
 
   def build_tree(array)
     # takes an array of data (e.g., [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]) and turns it into a balanced binary tree full of Node objects appropriately placed (don’t forget to sort and remove duplicates!). The #build_tree method should return the level-0 root node.
@@ -49,14 +52,11 @@ class Tree
       else
         previous_node.right_node = Node.new(value)
       end
-      # Condsider recursive?
     end
-    @size += 1
   end
 
   def delete(value, current_node = root)
     help_delete(value, current_node = root)
-    @size -= 1
     current_node
   end
 
@@ -115,72 +115,6 @@ class Tree
     end
   end
 
-  def level_order
-    # traverse the tree in breadth-first level order and yield each node to the provided block or  return an array of values if no block is given
-
-    # Insert block argument after function working
-
-    return if @root.nil?
-
-    discovered = []
-    discovered << @root
-    output = [] unless block_given?
-
-    while discovered.length > 0
-      if block_given?
-        yield(discovered[0].data)
-      else
-        output << discovered[0].data
-      end
-      discovered << discovered[0].left_node unless discovered[0].left_node.nil?
-      discovered << discovered[0].right_node unless discovered[0].right_node.nil?
-      discovered.shift
-    end
-    output
-  end
-
-  def inorder(current_node = root, &block)
-    # traverse tree depth first in left-root-right order
-    return [] if current_node.nil?
-
-    left = inorder(current_node.left_node, &block)
-    yield(current_node.data) if block_given?
-    right = inorder(current_node.right_node, &block)
-    left + [current_node.data] + right unless block_given?
-  end
-
-  def preorder
-    # traverse tree depth first in root-left-right order
-    return if @root.nil?
-
-    discovered = []
-    discovered << @root
-    output = [] unless block_given?
-
-    while discovered.length > 0
-      current_node = discovered[-1]
-      discovered.pop
-      if block_given?
-        yield(current_node.data)
-      else
-        output << current_node.data
-      end
-      discovered << current_node.right_node unless current_node.right_node.nil?
-      discovered << current_node.left_node unless current_node.left_node.nil?
-    end
-    output
-  end
-
-  def postorder(current_node = root, &block)
-    # traverse tree depth first in left-right-root order
-    return [] if current_node.nil?
-
-    left = inorder(current_node.left_node, &block)
-    right = inorder(current_node.right_node, &block)
-    yield(current_node.data) if block_given?
-    left + right + [current_node.data] unless block_given?
-  end
-
   def height(current_node = root)
     # accepts a node and returns its height, which is defined as the number of edges in longest path from a given node to a leaf node
     return - 1 if current_node.nil?
@@ -235,7 +169,6 @@ class Tree
     # rebalances an unbalanced tree
     array = level_order
     @root = nil
-    @size = 0
     build_tree(array)
   end
 end
