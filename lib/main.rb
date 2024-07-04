@@ -11,7 +11,7 @@ p tree.depth
 
 tree.build_tree(an_array)
 
-p tree
+p tree.balanced?
 
 tree.insert(11)
 tree.insert(12)
@@ -19,8 +19,8 @@ tree.insert(13)
 tree.insert(14)
 tree.insert(15)
 
-p tree
+p tree.balanced?
 
 tree.rebalance
 
-p tree
+p tree.balanced?
