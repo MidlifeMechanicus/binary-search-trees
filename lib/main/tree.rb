@@ -220,6 +220,10 @@ class Tree
 
   def rebalance
     # rebalances an unbalanced tree
+    array = level_order
+    @root = nil
+    @size = 0
+    build_tree(array)
   end
 
 

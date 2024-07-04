@@ -9,21 +9,18 @@ tree = Tree.new
 
 p tree.depth
 
-p tree.build_tree(an_array)
+tree.build_tree(an_array)
 
-node5 = tree.find(5)
+p tree
 
-p tree.depth(node5)
+tree.insert(11)
+tree.insert(12)
+tree.insert(13)
+tree.insert(14)
+tree.insert(15)
 
-# p tree.level_order
+p tree
 
-# p tree.height
-node8 = tree.find(8)
+tree.rebalance
 
-# p tree.height(node8)
-
-p tree.depth(node8)
-
-# tree.postorder { |data| puts data}
-# 
-# p tree.postorder
+p tree
